@@ -58,14 +58,15 @@ public class AngelListUtil {
 					if (!jsonResponse.equals(NO_RESULT)) {
 
 					JSONArray investorJsonArray = new JSONArray(jsonResponse);
-					if (investorJsonArray.length() > 1) {
+					if (investorJsonArray.length() > 1) {//more than one investor is returned
 						for (int x = 0; x < investorJsonArray.length(); x++) {
+							//TODO: Retain also the investors whose names are a bit changed (e.g. Münchhoff -> Muenchhoff
 							JSONObject investorJsonObject = investorJsonArray.getJSONObject(x);
 							id = String.valueOf(investorJsonObject.getInt(JSON_ID));
 							name = investorJsonObject.getString(JSON_NAME);
 							String returnedLastName = name.substring(name.indexOf(" ") + 1);
 							String originalLastName = Constants.originalInvestorList[i].substring(Constants.originalInvestorList[i].indexOf(" ") + 1);
-							if (returnedLastName.equals(originalLastName)){//we have a match 
+							if (returnedLastName.equals(originalLastName)){//if the last names match, then this is our investor 
 								investorInfo.put(id, name); 
 								}
 						}
@@ -345,7 +346,7 @@ public class AngelListUtil {
 		}
 		
 
-		
+		/********START OF METHODS USED TO DEAL WITH ENCODING**********/
 		private static String StringToUnicode(String input) {
 			HashMap replaceMap = new HashMap<String, String>();
 			ArrayList<String> charactersList = new ArrayList<String>();
@@ -356,6 +357,8 @@ public class AngelListUtil {
 			charactersList.add("ü");
 			replaceMap.put(" ", "%20");
 			charactersList.add(" ");
+			replaceMap.put("é", "&#233;");
+			charactersList.add("é");
 			
 			String[] inputArray = input.split("");
 			for (int i = 0; i < inputArray.length; i++) {
@@ -363,11 +366,11 @@ public class AngelListUtil {
 					//System.out.println("charactersList.get(j): " + charactersList.get(j));
 					if (inputArray[i].equals(charactersList.get(j))) {
 						input = input.replaceAll(inputArray[i], String.valueOf(replaceMap.get(charactersList.get(j))) );
-						System.out.println("Returned investor: " + input);
+						//System.out.println("Returned investor: " + input);
 					}
 				}
 			}
-			//System.out.println("Returned input is: " + input);
+			System.out.println("[StringToUnicode] Returned input is: " + input);
 			return input;
 		}
 		
@@ -375,10 +378,17 @@ public class AngelListUtil {
 			HashMap replaceMap = new HashMap<String, String>();
 			ArrayList<String> charactersList = new ArrayList<String>();
 			//create the map
-			replaceMap.put("&#214;", "\u00f6");//ö
+			/*GERMAN*/
+			//ö
+			replaceMap.put("&#214;", "\u00f6");
 			charactersList.add("&#214;");
+			//ü
 			replaceMap.put("&#220;", "\u00fc");
 			charactersList.add("&#220;");
+			/*FRENCH*/
+			//é
+			replaceMap.put("&#233;", "\u00e9");
+			charactersList.add("&#233;");
 			
 			String[] inputArray = input.split("");
 			for (int i = 0; i < inputArray.length; i++) {
@@ -386,7 +396,6 @@ public class AngelListUtil {
 					//System.out.println("charactersList.get(j): " + charactersList.get(j));
 					if (inputArray[i].equals(charactersList.get(j))) {
 						input = input.replaceAll(inputArray[i], String.valueOf(replaceMap.get(charactersList.get(j))) );
-						System.out.println("Returned investor: " + input);
 					}
 				}
 			}
@@ -406,4 +415,5 @@ public class AngelListUtil {
 				return buf.toString();
 			}
 		
+		/********END OF METHODS USED TO DEAL WITH ENCODING**********/
 }

@@ -10,7 +10,10 @@ public class AngelApiCall {
 	
 	public static void main (String[] args) {
 		//Arrays
-		String[] investorList = {"Christian Dörffer", "Christopher Münchhoff"};
+		String[] investorList = {"Andy Yates", "Anil Hansjee", "Anil Uzun", "Anmol Nayyar", "Anton Pasechnikov",
+				"Anusha Su", "Arek Dysko", "Arend Lars Iven", "Arnaud Loiseau", "Artemi Krymski", "Ashesh C Shah", "Ashley Howden", 
+				"Audrius Visniauskas", "Axel Schultze", "Azeem Azhar", "Barrie Heptonstall", "Ben Wynne", "Ben Metcalfe", "Ben Way",
+				"Benjamin Ling", "Benjamin Rohé"};
 		
 		HashMap investorStartups = new HashMap();//used to store each investor and the eligible startups
 		int[] investorIds = new int[investorList.length];
@@ -74,7 +77,6 @@ public class AngelApiCall {
 			//System.out.println("***Investor name: " + mapEntry.getValue() + "****");
 			String investorStringId = (String) mapEntry.getKey();
 			int investorId = Integer.valueOf(investorStringId);
-			System.out.println("investorStringId: " + investorStringId);
 			if (investorId > 0 ) {
 				//System.out.println("investorId: " + investorId);
 				//get the startups in which this investor has been involved
