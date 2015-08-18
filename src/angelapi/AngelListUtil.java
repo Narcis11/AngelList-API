@@ -35,7 +35,7 @@ public class AngelListUtil {
 					//construct the URL
 					toUseInvestorURL = BASE_INVESTOR_SEARCH_URL + investorList[i];
 					URL urlObject = new URL(toUseInvestorURL);
-					System.out.println(toUseInvestorURL);
+					//System.out.println(toUseInvestorURL);
 					//establish the connection
 					HttpURLConnection httpConnection = (HttpURLConnection) urlObject.openConnection();
 					httpConnection.setRequestMethod(HTTP_GET);
@@ -111,7 +111,7 @@ public class AngelListUtil {
 					toUseStartupURL = toUseStartupURL + "?page=" + String.valueOf(lastPage);
 				//System.out.println("lastPage/countLoops at start: " + lastPage + "/" + countLoops);
 				URL urlObject = new URL(toUseStartupURL);
-				System.out.println("toUseStartupURL: " + toUseStartupURL);
+				//System.out.println("toUseStartupURL: " + toUseStartupURL);
 				//establish the connection
 				HttpURLConnection httpConnection = (HttpURLConnection) urlObject.openConnection();
 				httpConnection.setRequestMethod(HTTP_GET);
