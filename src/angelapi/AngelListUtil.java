@@ -67,7 +67,6 @@ public class AngelListUtil {
 							String originalLastName = Constants.originalInvestorList[i].substring(Constants.originalInvestorList[i].indexOf(" ") + 1);
 							if (returnedLastName.equals(originalLastName)){//we have a match 
 								investorInfo.put(id, name); 
-								System.out.println("id/name: " + id + "/" + name);
 								}
 						}
 					}
