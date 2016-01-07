@@ -28,11 +28,11 @@ public class AngelApiCall {
 		final String QUERY_RESPONSE_TYPE = "response_type";
 		final String QUERY_CODE = "code";
 		final String QUERY_GRANT_TYPE = "grant_type";
-		final String clientId = "9419535c903faf85aeb4104dd24e4a8a6d6941f4761dbda0";
-		final String clientSecret = "a40c2428bd95b40b7cf1020f3d610f7d63e9a49ff00b790f";
+		final String clientId = "your_client_id";
+		final String clientSecret = "your_client_secret";
 		final String responseType = "code";
 		final String grantType = "authorization_code";
-		final String code = "bc80faff006eba3c1866d628725e8cfd24b1d0818e04c0b4";
+		final String code = "your_client_code";
 		final String authorizeURL = "https://angel.co/api/oauth/authorize?" + QUERY_CLIENT_ID + "=" + clientId + "&"
 							+ QUERY_RESPONSE_TYPE + "=" + responseType;
 		final String getTokenURL = "https://angel.co/api/oauth/token?" + QUERY_CLIENT_ID + "=" + clientId + "&" +
